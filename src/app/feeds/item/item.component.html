@@ -17,7 +17,7 @@
       {{item.title}}
   </p>
   <div class="subtext-palm">
-    <div class="details" *ngIf="item.type !== 'job'">
+    <div class="details">
       <span class="name">{{item.author}}</span>
       <span class="right">{{item.points}} ★ <a *ngIf="!item.upVote" (click)="handleAction('upVote', item)"><span class="votearrow" title="upvote">&nbsp;&nbsp;&nbsp;</span></a></span>
     </div>
