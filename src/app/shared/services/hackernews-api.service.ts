@@ -10,7 +10,7 @@ export class HackerNewsAPIService {
   baseUrl: string;
 
   constructor() {
-    this.baseUrl = 'http://hn.algolia.com/api/v1/';
+    this.baseUrl = 'https://hn.algolia.com/api/v1/';
   }
 
   fetchFeed(feedType: string, page: number): Observable<{}> {
