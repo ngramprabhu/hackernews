@@ -15,7 +15,7 @@ jobs:
       script: npm run lint
     - script: npm run lint:styles
       name: "CSS Style Lint"        # names the second Tests stage job
-    - script: npm run test-headless
+    - script: skip
       name: "Unit Test Execution"   # names the Third Tests stage job
     - stage: "Deployment"
       name: "Deploy Artifacts to Netlify"
