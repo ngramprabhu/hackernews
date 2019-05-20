@@ -13,9 +13,9 @@ jobs:
     - stage: "Tests"                # naming the Tests stage
       name: "Code Lint"             # names the first Tests stage job
       script: npm run lint
-    - script: npm run lint:styles
-      name: "CSS Style Lint"        # names the second Tests stage job
     - script: skip
+      name: "CSS Style Lint"        # names the second Tests stage job
+    - script: npm run test-headless
       name: "Unit Test Execution"   # names the Third Tests stage job
     - stage: "Deployment"
       name: "Deploy Artifacts to Netlify"
