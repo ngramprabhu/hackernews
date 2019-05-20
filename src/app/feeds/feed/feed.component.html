@@ -1,0 +1,28 @@
+<div class="main-content">
+  <app-loader *ngIf="!items && !errorMessage"></app-loader>
+  <app-error-message [message]="errorMessage" *ngIf="!items && errorMessage !==''"></app-error-message>
+
+  <div *ngIf="items">
+    <div class="nav">
+      <a *ngIf="listStart !== 1" [routerLink]="['/' + feedType, pageNum - 1]" routerLinkActive="active" class="prev">
+        ‹ Prev
+      </a>
+      <a *ngIf="items.length === 10" [routerLink]="['/' + feedType, pageNum + 1]" routerLinkActive="active" class="more">
+        More ›
+      </a>
+    </div>
+    <ol class="list-margin">
+      <li *ngFor="let item of items" class="post">
+        <app-item-block class="item-block" [item]="item" (valueChange)='updateFeeds($event)'></app-item-block>
+      </li>
+    </ol>
+    <div class="nav">
+      <a *ngIf="listStart !== 1" [routerLink]="['/' + feedType, pageNum - 1]" routerLinkActive="active" class="prev">
+        ‹ Prev
+      </a>
+      <a [routerLink]="['/' + feedType, pageNum + 1]" routerLinkActive="active" class="more">
+        More ›
+      </a>
+    </div>
+  </div>
+</div>

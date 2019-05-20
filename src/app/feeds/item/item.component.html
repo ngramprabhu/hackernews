@@ -1,0 +1,29 @@
+<div [ngStyle]="{'margin-bottom': settings.listSpacing+'px'}">  
+  <p *ngIf="hasUrl">
+    <span class="subtext-laptop">
+      <span class="comment-number">{{item.commentsCount}}</span>&nbsp;&nbsp;
+      <a *ngIf="!item.upVote" (click)="handleAction('upVote', item)"><span class="votearrow" title="upvote">&nbsp;&nbsp;&nbsp;</span></a>
+      <span class="">{{item.points}}</span>&nbsp;&nbsp;
+    </span>
+    <a class="title" [ngStyle]="{'font-size': settings.titleFontSize+'px'}" href="{{item.url}}" [attr.target]="'_blank'">
+      {{item.title}}
+    </a>
+    <span *ngIf="item.domain" class="domain">({{item.domain}})</span>
+    <span class="subtext-laptop">
+      by {{item.author}} {{ item.time | timeAgo}} <a (click)="handleAction('hide', item)">Hide</a>
+    </span>
+  </p>
+  <p *ngIf="!hasUrl">
+      {{item.title}}
+  </p>
+  <div class="subtext-palm">
+    <div class="details" *ngIf="item.type !== 'job'">
+      <span class="name">{{item.author}}</span>
+      <span class="right">{{item.points}} ★ <a *ngIf="!item.upVote" (click)="handleAction('upVote', item)"><span class="votearrow" title="upvote">&nbsp;&nbsp;&nbsp;</span></a></span>
+    </div>
+    <div class="details">
+    {{ item.time | timeAgo}}
+    <span class="comment-number"> | {{item.commentsCount | comment}} <a (click)="handleAction('hide', item)">Hide</a></span>
+    </div>
+  </div>
+</div>

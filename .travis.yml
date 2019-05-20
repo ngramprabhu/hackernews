@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+  - "9"
+dist: trusty
+sudo: required
+branches:
+  only:
+  - master
+before_script:
+  - npm install -g @angular/cli
+jobs:
+  include:
+    - stage: "Tests"                # naming the Tests stage
+      name: "Code Lint"             # names the first Tests stage job
+      script: npm run lint
+    - script: npm run lint:styles
+      name: "CSS Style Lint"        # names the second Tests stage job
+    - script: npm run test-headless
+      name: "Unit Test Execution"   # names the Third Tests stage job
+    - stage: "Deployment"
+      name: "Deploy Artifacts to Netlify"
+      script: ng build --prod
+      before_deploy:
+        - npm install netlify-cli -g
+      deploy:
+        provider: script
+        script: netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN -p --dir ./dist/hackernews/
+        skip_cleanup: true
+        on:
+          branch: master
