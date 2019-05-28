@@ -16,7 +16,7 @@ ol {
   list-style: none;
 
   @media #{$mobile-only} {
-    box-sizing: border-box;    
+    box-sizing: border-box;
     padding: 0 10px;
   }
 
